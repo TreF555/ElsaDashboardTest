@@ -3,8 +3,8 @@
     eventBus.on('activity-design-displaying', this.onActivityDesignDisplaying);
 
     this.onActivityDesignDisplaying = context => {
-        alert('test');
-        return;
+        //alert('test');
+        //return;
         const activityModel = context.activityModel;
 
         // Only handle RandomizeOutcome activities.
