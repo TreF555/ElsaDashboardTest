@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Elsa" Version="2.3.0" />
+    <PackageReference Include="Elsa.Abstractions" Version="2.3.0" />
+    <PackageReference Include="Elsa.Activities.Console" Version="2.3.0" />
+    <PackageReference Include="Elsa.Activities.Http" Version="2.3.0" />
+    <PackageReference Include="Elsa.Activities.Temporal.Common" Version="2.3.0" />
+    <PackageReference Include="Elsa.Activities.Temporal.Quartz" Version="2.3.0" />
+    <PackageReference Include="Elsa.Core" Version="2.3.0" />
+    <PackageReference Include="Elsa.Designer.Components.Web" Version="2.3.0" />
+    <PackageReference Include="Elsa.Persistence.EntityFramework.Sqlite" Version="2.3.0" />
+    <PackageReference Include="Elsa.Server.Api" Version="2.3.0" />
+
+
+
+
+    <PackageReference Include="Elsa.Activities.Email" Version="2.3.0" />
+    <!--<PackageReference Include="Elsa.Activities.Entity" Version="2.3.0" />-->
+    <!--<PackageReference Include="Elsa.Activities.file" Version="2.3.0" />-->
+    <!--<PackageReference Include="Elsa.Activities.Rebus" Version="2.3.0.225" />-->
+    <PackageReference Include="Elsa.Activities.usertask" Version="2.3.0" />
+    <!--<PackageReference Include="Elsa.Caching.Rebus" Version="2.3.0" />-->
+    <PackageReference Include="Elsa.Persistence.EntityFramework.PostgreSql" Version="2.3.0" />
+    <!--<PackageReference Include="Elsa.Rebus.RabbitMq" Version="2.2.1" />-->
+    <PackageReference Include="Elsa.Server.Api" Version="2.3.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\ts\" />
+  </ItemGroup>
+
+</Project>

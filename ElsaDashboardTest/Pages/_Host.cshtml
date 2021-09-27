@@ -1,0 +1,94 @@
+﻿@page "/"
+@{
+    var serverUrl = $"{Request.Scheme}://{Request.Host}";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elsa Workflows</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/_content/Elsa.Designer.Components.Web/elsa-workflows-studio/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/_content/Elsa.Designer.Components.Web/elsa-workflows-studio/assets/images/favicon-16x16.png">
+    <link rel="stylesheet" href="/_content/Elsa.Designer.Components.Web/elsa-workflows-studio/assets/fonts/inter/inter.css">
+    <link rel="stylesheet" href="/_content/Elsa.Designer.Components.Web/elsa-workflows-studio/elsa-workflows-studio.css">
+    <script src="/_content/Elsa.Designer.Components.Web/monaco-editor/min/vs/loader.js"></script>
+    <script type="module" src="/_content/Elsa.Designer.Components.Web/elsa-workflows-studio/elsa-workflows-studio.esm.js"></script>
+</head>
+<body>
+    <elsa-studio-root server-url="@serverUrl" monaco-lib-path="_content/Elsa.Designer.Components.Web/monaco-editor/min">
+        <elsa-studio-dashboard></elsa-studio-dashboard>
+    </elsa-studio-root>
+
+   *<script type="module">
+        import  RandomizeOutcomePlugin  from "/js/test.js";
+        // Get a handle to the elsa-studio-root element.
+        const elsaStudioRoot = document.querySelector('elsa-studio-root');
+
+        // Configure Elsa during the 'initializing' event.
+        elsaStudioRoot.addEventListener('initializing', e => {
+            const elsa = e.detail;
+            //elsa.pluginManager.registerPlugin(TestPlugin);
+            elsa.pluginManager.registerPlugin(RandomizeOutcomePlugin);
+        });
+    </script>
+    
+    @*<script>
+        function RandomizeOutcomePlugin(elsaStudio) {
+            const { eventBus } = elsaStudio;
+
+            eventBus.on('activity-design-displaying', this.onActivityDesignDisplaying);
+
+            this.onActivityDesignDisplaying(context)//: ActivityDesignDisplayContext)// = context =>
+            {
+                console.log(context);
+                const activityModel = context.activityModel;
+
+                // Only handle RandomizeOutcome activities.
+                if (activityModel.type !== 'RandomizeOutcome')
+                    return;
+
+                const props = activityModel.properties || [];
+                const syntax = SyntaxNames.Json;
+                console.log(props);
+                console.log(syntax);
+
+                // Get the value stored in the `PossibleOutcomes` property.
+                // Keep in mind that activity properties are stored in a dictionary of expressions, keyed by syntax.
+                const possibleOutcomes = props.find(x => x.name == 'PossibleOutcomes') || { expressions: { 'Json': '[]' }, syntax: syntax };
+                const expression = possibleOutcomes.expressions[syntax] || [];
+                console.log(possibleOutcomes);
+                console.log(expression);
+
+                // Set the outcomes property of the `context` argument to the list of possible outcomes.
+                // Due to the way expressions are serialized depending on the syntax used, we need to check for a couple of formats in order to get the array.
+                //context.outcomes = !!expression['$values'] ? expression['$values'] : Array.isArray(expression) ? expression : parseJson(expression) || [];
+            }
+        }
+    </script>
+    <script>
+        const elsaStudioRoot = document.querySelector('elsa-studio-root');
+
+        elsaStudioRoot.addEventListener('initializing', e => {
+            const elsaStudio = e.detail;
+            elsaStudio.pluginManager.registerPlugin(RandomizeOutcomePlugin);
+        });
+    </script>*@
+    
+    @*<script type="module">
+            // Import publicly exposed services.
+            import { WebhooksPlugin } from "/build/index.esm.js";
+
+            // Get a handle to the elsa-studio-root element.
+            const elsaStudioRoot = document.querySelector('elsa-studio-root');
+
+            // Configure Elsa during the 'initializing' event.
+            elsaStudioRoot.addEventListener('initializing', e => {
+                const elsa = e.detail;
+                elsa.pluginManager.registerPlugin(WebhooksPlugin);
+            });
+
+        </script>*@
+
+</body>
+</html>
