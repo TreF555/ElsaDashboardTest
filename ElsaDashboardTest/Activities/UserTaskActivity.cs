@@ -14,7 +14,7 @@ namespace ElsaDashboardTest.Activities
 {
     [Trigger(
         Category = "Test",
-        DisplayName = "User tesr ",
+        DisplayName = "User test UserTaskActivity ",
         Description = ""
         //, Outcomes = new[] { OutcomeNames.Done, "x => x.state.actions" }
         )]
@@ -29,8 +29,8 @@ namespace ElsaDashboardTest.Activities
 
         [ActivityInput(
            UIHint = ActivityInputUIHints.MultiText,
-           Label = "Укажите список действий для сотрудника",
-           Hint = "Предоставьте список доступных действий",
+           Label = "Specify a list of actions for an employee",
+           Hint = "Provide a list of available actions",
            DefaultSyntax = SyntaxNames.Json,
            SupportedSyntaxes = new[] { SyntaxNames.Json }
            )]
