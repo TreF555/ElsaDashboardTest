@@ -13,7 +13,7 @@ using Elsa.Services;
 using Newtonsoft.Json.Linq;
 
 namespace ElsaDashboardTest.Activities
-{   
+{
     [Action(Category = "Test",
        DisplayName = "User test DynamicVehicleActivity ",
        Description = "User test DynamicVehicleActivity for Depends")]
@@ -56,6 +56,18 @@ namespace ElsaDashboardTest.Activities
         )]
         public string? Color { get; set; }
 
+
+        [ActivityInput(
+            UIHint = ActivityInputUIHints.CheckList,
+            Label = "Dictionary provider Dropdown CheckList",
+            OptionsProvider = typeof(UserTaskActivityTest2),
+            SupportedSyntaxes = new[] { SyntaxNames.Literal, SyntaxNames.JavaScript, SyntaxNames.Liquid },
+            DependsOnEvents = new[] { "Brand" },
+            DependsOnValues = new[] { "Brand" }
+        )]
+        public ICollection<string> DictionaryValueCheckList1 { get; set; } = new List<string>();
+
+
         [ActivityOutput] public string? Output { get; set; }
 
         /// <summary>
@@ -83,6 +95,12 @@ namespace ElsaDashboardTest.Activities
                     {
                         var brands = dataSource.Select(x => new SelectListItem(x["Name"]!.Value<string>()!)).ToList();
                         return new ValueTask<SelectList>(new SelectList(brands));
+                    }
+                case "DictionaryValueCheckList1" when dependencyValues.TryGetValue("Brand", out var brandValue):
+                    {
+                        var models = (JArray?)dataSource.FirstOrDefault(x => x["Name"]!.Value<string>() == brandValue)?["Models"];
+                        var modelListItems = models?.Select(x => new SelectListItem(x["Name"]!.Value<string>()!)).ToList() ?? new List<SelectListItem>(0);
+                        return new(new SelectList(modelListItems));
                     }
                 case "Model" when dependencyValues.TryGetValue("Brand", out var brandValue):
                     {
