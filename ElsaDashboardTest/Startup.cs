@@ -36,6 +36,7 @@ namespace ElsaDashboardTest
                     .AddActivity<RandomizeOutcome>()
                     .AddActivity<UserTaskActivity>()
                     .AddActivity<UserTaskActivityTest2>()
+                    .AddActivity<DynamicVehicleActivity>()
                     
                     .AddWorkflowsFrom<Startup>()
                 );

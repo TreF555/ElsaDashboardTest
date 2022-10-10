@@ -42,7 +42,7 @@ namespace ElsaDashboardTest.Activities
             DefaultSyntax = SyntaxNames.Literal,
             SupportedSyntaxes = new[] { SyntaxNames.Literal, SyntaxNames.JavaScript, SyntaxNames.Liquid }
         )]
-        public Guid DictionaryId { get; set; } = default!;
+        public string? DictionaryId { get; set; } = default!;
 
 
         [ActivityInput(
@@ -87,7 +87,7 @@ namespace ElsaDashboardTest.Activities
             {
                 case nameof(DictionaryId):
                     {
-                        if (DictionaryId == Guid.Empty)
+                        if (DictionaryId == default)
                         {
                             var items0 = new List<SelectListItem>();
                             items0.Add(new SelectListItem("DictionaryId1", "{1CCC760B-DC2A-4879-AF69-1FE469FF51D3}"));
@@ -180,6 +180,6 @@ namespace ElsaDashboardTest.Activities
            , string[] DependsOnValue
            , IDictionary<string, string> DepValues
            , Test2Context? Context);
-        public record Test2Context(Guid DictionaryId);
+        public record Test2Context(string DictionaryId);
     }
 }
